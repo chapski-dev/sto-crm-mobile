@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
 
 export const Auth = () => {
-	const [stateV, setStateV] = useState('')
+	const [buttonValue, setButtonValue] = useState('')
 
 	return (
 		<View style={styles.main}>
 			<Text>hui</Text>
-			<TouchableOpacity  onPress={() => console.log(stateV)}>
+			<TouchableOpacity  onPress={() => console.log(buttonValue)}>
 				<Text>click</Text>
 			</TouchableOpacity>
 
 			<ActivityIndicator  />
 
-			<TextInput onChangeText={setStateV} />
+			<TextInput onChangeText={setButtonValue} />
 		</View>
 	)
 }
