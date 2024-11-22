@@ -1,4 +1,4 @@
-package com.awesomeproject2
+package com.stoCrmMobile
 
 import android.app.Application
 import com.facebook.react.PackageList
