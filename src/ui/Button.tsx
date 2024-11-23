@@ -1,27 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export const Button = () => {
-	const [buttonState, setButtonState] = useState<String>('disabled')
-
-	//can be 'disabled', 'enabled', 'loading'
-
+export const Button = (props: any) => {
 	return (
 		<View style={styles.buttonWrapper}>
-			{buttonState === 'disabled' 
-			?
-			<TouchableOpacity style={styles.buttonContainerDisabled} disabled={true}>
-				<Text style={styles.buttonText}>Войти</Text>
+			<TouchableOpacity style={[props.buttonState === 'disabled' ? styles.buttonContainerDisabled : styles.buttonContainer]} disabled={props.buttonState === 'disabled' ? true : false} >
+				<Text style={styles.buttonText}>
+					{props.isLoading ? <ActivityIndicator color="white" /> : 'Войти'} 
+				</Text>
 			</TouchableOpacity>
-			:
-			<TouchableOpacity style={styles.buttonContainer}>
-				{
-					buttonState === 'enabled' ?
-					<Text style={styles.buttonText}>Войти</Text> :
-					<ActivityIndicator color="white"  />
-				}
-			</TouchableOpacity>
-			}
 		</View>
 	)
 }
