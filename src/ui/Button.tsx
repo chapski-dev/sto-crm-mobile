@@ -9,11 +9,11 @@ type PropsType = {
 
 export const Button = (props: PropsType) => {
 	return (
-		<View style={styles.buttonWrapper}>
-			<TouchableOpacity style={[props.disabled ? styles.buttonContainerDisabled : styles.buttonContainer]} disabled={props.disabled ? true : false} >
+		<View style={styles.wrapper}>
+			<TouchableOpacity style={[props.disabled ? styles.containerDisabled : styles.container]} disabled={props.disabled ? true : false} >
 			{
 				props.loading ?
-				<Text style={styles.buttonText}>{props.buttonText}</Text>
+				<Text style={styles.text}>{props.buttonText}</Text>
 				:
 				<ActivityIndicator color="white" />
 			}
@@ -23,11 +23,11 @@ export const Button = (props: PropsType) => {
 }
 
 const styles = StyleSheet.create({
-	buttonWrapper: {
+	wrapper: {
 		width: '100%',
 		alignItems: 'center'
 	},
-	buttonContainerDisabled: {
+	containerDisabled: {
 		width: 343,
 		height: 48,
 		backgroundColor: '#0090FF',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 		borderRadius: 12,
 		opacity: 0.5
 	},
-	buttonContainer: {
+	container: {
 		width: 343,
 		height: 48,
 		backgroundColor: '#0090FF',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 12,
 	},
-	buttonText: {
+	text: {
 		color: 'white',
 		fontSize: 20
 	},
