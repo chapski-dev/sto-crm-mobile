@@ -1,13 +1,22 @@
 import React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-export const Button = (props: any) => {
+type PropsType = {
+	disabled: boolean,
+	loading: boolean,
+	buttonText: string
+}
+
+export const Button = (props: PropsType) => {
 	return (
 		<View style={styles.buttonWrapper}>
-			<TouchableOpacity style={[props.buttonState === 'disabled' ? styles.buttonContainerDisabled : styles.buttonContainer]} disabled={props.buttonState === 'disabled' ? true : false} >
-				<Text style={styles.buttonText}>
-					{props.isLoading ? <ActivityIndicator color="white" /> : 'Войти'} 
-				</Text>
+			<TouchableOpacity style={[props.disabled ? styles.buttonContainerDisabled : styles.buttonContainer]} disabled={props.disabled ? true : false} >
+			{
+				props.loading ?
+				<Text style={styles.buttonText}>{props.buttonText}</Text>
+				:
+				<ActivityIndicator color="white" />
+			}
 			</TouchableOpacity>
 		</View>
 	)
