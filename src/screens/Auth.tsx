@@ -3,13 +3,12 @@ import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpa
 import { Button } from '../ui/Button'
 
 export const Auth = () => {
-	const [disabledButton, setDisabledButton] = useState(true)
+	const [disabledButton, setDisabledButton] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const [buttonText, setButtonText] = useState('Войти')
 
 	return (
 		<View>
-			<Button disabled={disabledButton} loading={loading} buttonText={buttonText} />
+			<Button disabled={disabledButton} loading={loading} title={'Войти'} />
 		</View>
 	)
 }
