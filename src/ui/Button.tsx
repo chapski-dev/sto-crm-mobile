@@ -6,16 +6,16 @@ type PropsType = {
 	loading: boolean,
 	title: string,
 	onPress: Function,
-	wrapperStyle: {},
-	containerDisabledStyle: {},
-	containerStyle: {},
-	textStyle: {}
+	wrapperStyle?: {width: '100%'},
+	bodyStyle?: {width: 343, height: 48, backgroundColor: '#0090FF'},
+	bodyDisabledStyle?: {width: 343, height: 48, backgroundColor: '#0090FF', opacity: 0.5},
+	textStyle?: {color: 'white', fontSize: 20}
 }
 
 export const Button = (props: PropsType) => {
 	return (
 		<View style={{...styles.wrapper, ...props.wrapperStyle}}>
-			<TouchableOpacity style={props.disabled ? {...styles.containerDisabled, ...props.containerDisabledStyle} : {...styles.container, ...props.containerStyle}} disabled={props.disabled} onPress={() => props.onPress} >
+			<TouchableOpacity style={props.disabled ? {...styles.bodyDisabled, ...props.bodyDisabledStyle} : {...styles.body, ...props.bodyStyle}} disabled={props.disabled} onPress={() => props.onPress} >
 			{
 				props.loading ?
 				<ActivityIndicator color="white" />
@@ -32,7 +32,15 @@ const styles = StyleSheet.create({
 		width: '100%',
 		alignItems: 'center'
 	},
-	containerDisabled: {
+	body: {
+		width: 343,
+		height: 48,
+		backgroundColor: '#0090FF',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 12,
+	},
+	bodyDisabled: {
 		width: 343,
 		height: 48,
 		backgroundColor: '#0090FF',
@@ -40,14 +48,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 12,
 		opacity: 0.5
-	},
-	container: {
-		width: 343,
-		height: 48,
-		backgroundColor: '#0090FF',
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 12,
 	},
 	text: {
 		color: 'white',

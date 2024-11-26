@@ -10,15 +10,6 @@ export const Auth = () => {
 		console.log('button pressed')
 	}
 
-	// const stylesForAuthButton = {
-	// 	wrapper: {
-	// 		width: '100%', 
-	// 		alignItems: 'center'
-	// 	}
-	// }
-
-
-
 	return (
 		<View>
 			<Button 
@@ -26,11 +17,6 @@ export const Auth = () => {
 				loading={loading} 
 				title={'Войти'} 
 				onPress={onAuthButtonPressHandler}
-
-				wrapperStyle={{}}
-				containerDisabledStyle={{}}
-				containerStyle={{}}
-				textStyle={{}}
 			/>
 		</View>
 	)
