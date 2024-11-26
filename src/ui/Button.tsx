@@ -4,18 +4,23 @@ import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'rea
 type PropsType = {
 	disabled: boolean,
 	loading: boolean,
-	title: string
+	title: string,
+	onPress: Function,
+	wrapperStyle: {},
+	containerDisabledStyle: {},
+	containerStyle: {},
+	textStyle: {}
 }
 
 export const Button = (props: PropsType) => {
 	return (
-		<View style={styles.wrapper}>
-			<TouchableOpacity style={[props.disabled ? styles.containerDisabled : styles.container]} disabled={props.disabled} onPress={() => console.log('pressed out')} >
+		<View style={{...styles.wrapper, ...props.wrapperStyle}}>
+			<TouchableOpacity style={props.disabled ? {...styles.containerDisabled, ...props.containerDisabledStyle} : {...styles.container, ...props.containerStyle}} disabled={props.disabled} onPress={() => props.onPress} >
 			{
 				props.loading ?
 				<ActivityIndicator color="white" />
 				:
-				<Text style={styles.text}>{props.title}</Text>
+				<Text style={{...styles.text, ...props.textStyle}}>{props.title}</Text>
 			}
 			</TouchableOpacity>
 		</View>
