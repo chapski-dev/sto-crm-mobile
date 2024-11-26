@@ -1,26 +1,31 @@
-import React, { useState } from 'react'
-import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
+import React from 'react';
+import {
+  StyleSheet,
+  View
+} from 'react-native';
+import Input from '../ui/Input';
+import { Label, MainTitle } from '../ui/Text';
 
 export const Auth = () => {
-	const [buttonValue, setButtonValue] = useState('')
 
-	return (
-		<View style={styles.main}>
-			<Text>hui</Text>
-			<TouchableOpacity  onPress={() => console.log(buttonValue)}>
-				<Text>click</Text>
-			</TouchableOpacity>
-
-			<ActivityIndicator  />
-
-			<TextInput onChangeText={setButtonValue} />
-		</View>
-	)
-}
+  return (
+    <View style={styles.main}>
+        <MainTitle props='Авторизация'/>
+      <View>
+        <Input props1='УНП организации' placeholder='000 000 000 000'/>
+      </View>
+      <View>
+        <Input props1="Телефон" props2="Введите номер без знака плюс (+)" placeholder='375 00 00 00 00'/>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-	main: {
-		backgroundColor: 'pink',
-		height: 55
-	}
-})
+  main: {
+    marginTop: 8,
+    marginLeft: 16,
+    marginRight: 16,
+    gap: 24,
+  },
+});
