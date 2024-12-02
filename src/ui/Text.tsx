@@ -7,7 +7,7 @@ const Title = ({ props }) => {
   );
 };
 
-const OtherText = ({ props }) => {
+const Label = ({ props }) => {
   return (
     <Text style={styles.otherText}>{props}</Text>
   );
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { Title as MainTitle, OtherText as Label };
+export {Title, Label};

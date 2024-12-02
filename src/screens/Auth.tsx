@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View
 } from 'react-native';
 import Input from '../ui/Input';
-import { Label, MainTitle } from '../ui/Text';
+import { Title } from '../ui/Text';
 
 export const Auth = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [phoneValue, setPhoneValue] = useState('');
 
   return (
     <View style={styles.main}>
-        <MainTitle props='Авторизация'/>
+        <Title props='Авторизация'/>
       <View>
-        <Input props1='УНП организации' placeholder='000 000 000 000'/>
+        <Input 
+        label='УНП организации' 
+        placeholder='000 000 000 000' 
+        value={inputValue} 
+        onChangeText={setInputValue} 
+        />
       </View>
       <View>
-        <Input props1="Телефон" props2="Введите номер без знака плюс (+)" placeholder='375 00 00 00 00'/>
+        <Input 
+        label="Телефон" 
+        prompting="Введите номер без знака плюс (+)" 
+        placeholder='375 00 00 00 00'
+        value={phoneValue} 
+        onChangeText={setPhoneValue} 
+        />
       </View>
     </View>
   );
