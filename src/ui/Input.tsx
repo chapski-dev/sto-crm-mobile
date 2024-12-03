@@ -3,19 +3,21 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-nativ
 import CrossIcon from '../../assets/Icons/CrossIcon.svg';
 
 interface InputProps {
-  placeholder: string;
-  label: string;
   prompting: string;
   value: string;
   onChangeText: (text: string) => void;
+  error: boolean;
+  errorText: string;
 }
 
 const Input: FC<InputProps> = ({
   placeholder, 
   label, 
   prompting,
-  value = '',
-  onChangeText 
+  value,
+  onChangeText, 
+  error,
+  errorText
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -23,12 +25,10 @@ const Input: FC<InputProps> = ({
     onChangeText('');
   };
 
-  const isError = value.length > 0 && value.length < 12;
-
   return (
     <View style={styles.container}>
       <Text style={styles.textWrapper}>{label}</Text>
-      <View style={[styles.inputWrapper, isFocused && styles.inputFocused, isError && styles.inputError]}>
+      <View style={[styles.inputWrapper, isFocused && styles.inputFocused, error && styles.inputError]}>
         <TextInput 
           placeholder={placeholder} 
           value={value}
@@ -43,8 +43,8 @@ const Input: FC<InputProps> = ({
           </TouchableOpacity>
         )}
       </View>
-      {isError ? (
-        <Text style={styles.errorText}>Error</Text>
+      {error ? (
+        <Text style={styles.errorText}>{errorText}</Text>
       ) : (
         <Text style={styles.textWrapper}>{prompting}</Text>
       )}
@@ -87,5 +87,6 @@ const styles = StyleSheet.create({
 });
 
 export default Input;
+
 
 
