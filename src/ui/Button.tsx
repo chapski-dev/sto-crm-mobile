@@ -1,26 +1,23 @@
 import React from 'react'
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewProps, ViewStyle } from 'react-native'
 
-type PropsType = {
+interface PropsType extends ViewProps {
 	disabled: boolean,
 	loading: boolean,
 	title: string,
 	onPress: Function,
-	wrapperStyle?: {width: '100%'},
-	bodyStyle?: {width: 343, height: 48, backgroundColor: '#0090FF'},
-	bodyDisabledStyle?: {width: 343, height: 48, backgroundColor: '#0090FF', opacity: 0.5},
-	textStyle?: {color: 'white', fontSize: 20}
+	style?: StyleProp<ViewStyle>
 }
 
 export const Button = (props: PropsType) => {
 	return (
-		<View style={{...styles.wrapper, ...props.wrapperStyle}}>
-			<TouchableOpacity style={props.disabled ? {...styles.bodyDisabled, ...props.bodyDisabledStyle} : {...styles.body, ...props.bodyStyle}} disabled={props.disabled} onPress={() => props.onPress} >
+		<View style={[styles.wrapper, props.style]}>
+			<TouchableOpacity style={props.disabled ? [styles.bodyDisabled, props.style] : [styles.body, props.style]} disabled={props.disabled} onPress={() => props.onPress} >
 			{
 				props.loading ?
 				<ActivityIndicator color="white" />
 				:
-				<Text style={{...styles.text, ...props.textStyle}}>{props.title}</Text>
+				<Text style={[styles.text, props.style]}>{props.title}</Text>
 			}
 			</TouchableOpacity>
 		</View>
