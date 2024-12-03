@@ -1,23 +1,31 @@
-import React, { FC, useState } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React, {FC, useState} from 'react';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  TextInputProps,
+} from 'react-native';
 import CrossIcon from '../../assets/Icons/CrossIcon.svg';
 
-interface InputProps {
-  prompting: string;
+interface InputProps extends TextInputProps {
+  label?: string;
+  prompting?: string;
   value: string;
   onChangeText: (text: string) => void;
   error: boolean;
   errorText: string;
 }
 
-const Input: FC<InputProps> = ({
-  placeholder, 
-  label, 
+export const Input: FC<InputProps> = ({
+  label,
   prompting,
   value,
-  onChangeText, 
+  onChangeText,
   error,
-  errorText
+  errorText,
+  ...restProps
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -26,16 +34,21 @@ const Input: FC<InputProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.textWrapper}>{label}</Text>
-      <View style={[styles.inputWrapper, isFocused && styles.inputFocused, error && styles.inputError]}>
-        <TextInput 
-          placeholder={placeholder} 
+      <View
+        style={[
+          styles.inputWrapper,
+          isFocused && styles.inputFocused,
+          error && styles.inputError,
+        ]}>
+        <TextInput
           value={value}
           style={styles.input}
           onChangeText={onChangeText}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          {...restProps}
         />
         {value.length > 0 && isFocused && (
           <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
@@ -85,8 +98,3 @@ const styles = StyleSheet.create({
     color: 'red',
   },
 });
-
-export default Input;
-
-
-

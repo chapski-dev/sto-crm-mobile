@@ -1,16 +1,12 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
-const Title = ({ props }) => {
-  return (
-    <Text style={styles.titleText}>{props}</Text>
-  );
+const Title = ({props}) => {
+  return <Text style={styles.titleText}>{props}</Text>;
 };
 
-const Label = ({ props }) => {
-  return (
-    <Text style={styles.otherText}>{props}</Text>
-  );
+const Label = ({props}) => {
+  return <Text style={styles.otherText}>{props}</Text>;
 };
 
 const styles = StyleSheet.create({
@@ -26,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Title, Label};
+export {Label, Title};
