@@ -1,3 +1,28 @@
+feat/ui-button
+import React, { useState } from 'react'
+import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
+import { Button } from '../ui/Button'
+
+export const Auth = () => {
+	const [disabledButton, setDisabledButton] = useState(false)
+	const [loading, setLoading] = useState(false)
+
+	const onAuthButtonPressHandler = () => {
+		console.log('button pressed')
+	}
+
+	return (
+		<View>
+			<Button 
+				disabled={disabledButton} 
+				loading={loading} 
+				title={'Войти'} 
+				onPress={onAuthButtonPressHandler}
+			/>
+		</View>
+	)
+}
+
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Input} from '../ui/Input';
@@ -43,3 +68,4 @@ const styles = StyleSheet.create({
     gap: 24,
   },
 });
+main
