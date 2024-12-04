@@ -1,14 +1,23 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
 import {Input} from '../ui/Input';
 import {Title} from '../ui/Text';
+import { Button } from '../ui/Button'
 
 export const Auth = () => {
   const [inputValue, setInputValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
+  const [disabledButton, setDisabledButton] = useState(true)
+	const [loading, setLoading] = useState(true)
+
+	const onAuthButtonPressHandler = () => {
+		console.log('button pressed')
+	}
+
   return (
     <View style={styles.main}>
+
       <Title props="Авторизация" />
       <View>
         <Input
@@ -20,6 +29,7 @@ export const Auth = () => {
           errorText="Error"
         />
       </View>
+
       <View>
         <Input
           label="Телефон"
@@ -31,6 +41,16 @@ export const Auth = () => {
           errorText="Error"
         />
       </View>
+
+      <View>
+        <Button 
+          disabled={disabledButton} 
+          loading={loading} 
+          title={'Войти'} 
+          onPress={onAuthButtonPressHandler}
+        />
+		</View>
+
     </View>
   );
 };
