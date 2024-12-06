@@ -1,10 +1,26 @@
-import React, {useState} from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
+import React, {useEffect, useState} from 'react';
+import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, Keyboard } from 'react-native'
 import {Input} from '../ui/Input';
 import {Title} from '../ui/Text';
 import { Button } from '../ui/Button'
 
 export const Auth = () => {
+  const [keyboardStatus, setKeyboardStatus] = useState('Keyboard Hidden');
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardStatus('Keyboard Shown');
+    })
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardStatus('Keyboard Hidden');
+    })
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    }
+  }, [])
+
   const [inputValue, setInputValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
@@ -16,30 +32,37 @@ export const Auth = () => {
 	}
 
   return (
-    <View style={styles.main}>
-
-      <Title props="Авторизация" />
-      <View>
-        <Input
-          label="УНП организации"
-          placeholder="000 000 000 000"
-          value={inputValue}
-          onChangeText={setInputValue}
-          error={inputValue.length > 0 && inputValue.length < 12}
-          errorText="Error"
-        />
-      </View>
+    <View style={keyboardStatus === 'Keyboard Shown' ? [styles.main, styles.mainKeyboardShown] : styles.main}>
 
       <View>
-        <Input
-          label="Телефон"
-          prompting="Введите номер без знака плюс (+)"
-          placeholder="375 00 00 00 00"
-          value={phoneValue}
-          onChangeText={setPhoneValue}
-          error={phoneValue.length > 0 && phoneValue.length < 12}
-          errorText="Error"
-        />
+
+        <Title props="Авторизация" />
+
+        <View>
+          <Input
+            onSubmitEditing={Keyboard.dismiss}
+            label="УНП организации"
+            placeholder="000 000 000 000"
+            value={inputValue}
+            onChangeText={setInputValue}
+            error={inputValue.length > 0 && inputValue.length < 12}
+            errorText="Error"
+          />
+        </View>
+
+        <View>
+          <Input
+            onSubmitEditing={Keyboard.dismiss}
+            label="Телефон"
+            prompting="Введите номер без знака плюс (+)"
+            placeholder="375 00 00 00 00"
+            value={phoneValue}
+            onChangeText={setPhoneValue}
+            error={phoneValue.length > 0 && phoneValue.length < 12}
+            errorText="Error"
+          />
+        </View>
+
       </View>
 
       <View>
@@ -57,9 +80,15 @@ export const Auth = () => {
 
 const styles = StyleSheet.create({
   main: {
-    marginTop: 8,
+    height: "93%",
+    marginTop: 50,
     marginLeft: 16,
     marginRight: 16,
     gap: 24,
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  mainKeyboardShown : {
+    height: "70%",
   },
 });
