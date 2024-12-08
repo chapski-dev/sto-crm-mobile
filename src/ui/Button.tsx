@@ -46,7 +46,7 @@ export const Button: FC<PropsType> = ({
             : [styles.button, buttonStyle]
         }
         disabled={disabled}
-        onPress={() => onPress}>
+        onPress={onPress}>
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
