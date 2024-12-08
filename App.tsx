@@ -1,12 +1,12 @@
-import { SafeAreaView } from "react-native";
-import { Auth } from "./src/screens/Auth";
+import {NavigationContainer} from '@react-navigation/native';
+import {Navigator} from './src/navigation/Navigator';
+import React from 'react';
 
 function App(): React.JSX.Element {
-
   return (
-    <SafeAreaView>
-      <Auth />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
   );
 }
 
