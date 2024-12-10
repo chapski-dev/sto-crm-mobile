@@ -24,7 +24,7 @@ export const Auth = () => {
 
   return (
     <View style={styles.main}>
-      <Title props="Авторизация" />
+      <Title title="Авторизация" />
       <View>
         <Input
           label="УНП организации"

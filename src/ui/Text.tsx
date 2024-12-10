@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 
-const Title = ({props}) => {
-  return <Text style={styles.titleText}>{props}</Text>;
+const Title = ({title}) => {
+  return <Text style={styles.titleText}>{title}</Text>;
 };
 
 const Label = ({props}) => {
