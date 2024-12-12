@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
 import {Input} from '../ui/Input';
-import {Title} from '../ui/Text';
+import {Text} from '../ui/Text';
 import { Button } from '../ui/Button'
 
 export const Auth = () => {
@@ -18,7 +18,8 @@ export const Auth = () => {
   return (
     <View style={styles.main}>
 
-      <Title props="Авторизация" />
+      <Text children="Авторизация" type='body' fontWeight={700} fontSize={32} color='#203040' />
+
       <View>
         <Input
           label="УНП организации"
@@ -57,7 +58,7 @@ export const Auth = () => {
 
 const styles = StyleSheet.create({
   main: {
-    marginTop: 8,
+    marginTop: 50,
     marginLeft: 16,
     marginRight: 16,
     gap: 24,
