@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native'
 import { Button } from '../ui/Button';
 import {Text} from '../ui/Text';
-import NoConnectionIcon from '../../assets/Icons/no-connection.svg'
+import NoConnectionIcon from '../../assets/icons/no-connection.svg'
 
 export const NoConnection = () => {
 
