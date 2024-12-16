@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View, Keyboard } from 'react-native'
+import { ActivityIndicator, StyleSheet, TextInput, Touchable, TouchableOpacity, View, Keyboard } from 'react-native'
 import {Input} from '../ui/Input';
 import {Title} from '../ui/Text';
-import { Button } from '../ui/Button'
+import {Button} from '../ui/Button';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../navigation/types';
+
+type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Auth = () => {
   const [keyboardStatus, setKeyboardStatus] = useState('Keyboard Hidden');
@@ -24,12 +29,14 @@ export const Auth = () => {
   const [inputValue, setInputValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
-  const [disabledButton, setDisabledButton] = useState(true)
-	const [loading, setLoading] = useState(true)
+  const [disabledButton, setDisabledButton] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-	const onAuthButtonPressHandler = () => {
-		console.log('button pressed')
-	}
+  const navigation = useNavigation<AuthScreenNavigationProp>();
+
+  const handleSubmit = () => {
+    navigation.push('Tabs');
+  };
 
   return (
     <View style={keyboardStatus === 'Keyboard Shown' ? [styles.main, styles.mainKeyboardShown] : styles.main}>
@@ -66,14 +73,13 @@ export const Auth = () => {
       </View>
 
       <View>
-        <Button 
-          disabled={disabledButton} 
-          loading={loading} 
-          title={'Войти'} 
-          onPress={onAuthButtonPressHandler}
+        <Button
+          disabled={disabledButton}
+          loading={loading}
+          title={'Войти'}
+          onPress={handleSubmit}
         />
-		</View>
-
+      </View>
     </View>
   );
 };
