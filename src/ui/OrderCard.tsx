@@ -1,15 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Order} from '../screens/OrdersScreen';
 
-interface OrderCardProps {
-  title: string;
-  status: string;
-  date: string;
-  carBrand: string;
-}
-
-export const OrderCard: React.FC<OrderCardProps> = ({
-  title,
+export const OrderCard: React.FC<Order> = ({
+  OrderNumber,
   status,
   date,
   carBrand,
@@ -29,9 +23,9 @@ export const OrderCard: React.FC<OrderCardProps> = ({
 
   return (
     <View style={styles.container}>
-      <View style={styles.wrapper}>
+      <View style={styles.orderCardHeader}>
         <View>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{OrderNumber}</Text>
           <Text>{date}</Text>
         </View>
         <View style={[styles.wrapperStatus, getStatusStyle()]}>
@@ -54,7 +48,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#E8ECF0',
     marginHorizontal: 16,
   },
-  wrapper: {
+  orderCardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

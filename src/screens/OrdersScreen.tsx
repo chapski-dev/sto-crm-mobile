@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import ReportSearchIcon from '../../assets/icons/ReportSearchIcon.svg';
+import ReportSearchIcon from '../../assets/icons/report-search.svg';
 import {OrderCard} from '../ui/OrderCard';
 import {Title} from '../ui/Text';
 
-interface Order {
+enum OrderStatus {
+  InProgress = 'В работе',
+  ClientRefused = 'Отказ клиента',
+  Completed = 'Выполнен',
+}
+
+export interface Order {
   id: string;
-  title: string;
-  status: string;
+  OrderNumber: string;
+  status: OrderStatus;
   date: string;
   carBrand: string;
 }
@@ -15,28 +21,41 @@ interface Order {
 const DATA: Order[] = [
   {
     id: '1',
-    title: '№231128162535',
-    status: 'В работе',
+    OrderNumber: '№231128162535',
+    status: OrderStatus.InProgress,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
   },
   {
     id: '2',
-    title: '№231128162535',
-    status: 'Отказ клиента',
+    OrderNumber: '№231128162535',
+    status: OrderStatus.ClientRefused,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
   },
   {
     id: '3',
-    title: '№231128162535',
-    status: 'Выполнен',
+    OrderNumber: '№231128162535',
+    status: OrderStatus.Completed,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
   },
 ];
 
 export const OrdersScreen: React.FC = () => {
+  const renderItem = useCallback(
+    ({item}: {item: Order}) => (
+      <OrderCard
+        OrderNumber={item.OrderNumber}
+        status={item.status}
+        date={item.date}
+        carBrand={item.carBrand}
+        id={''}
+      />
+    ),
+    [],
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.wrapperTitle}>
@@ -44,14 +63,7 @@ export const OrdersScreen: React.FC = () => {
       </View>
       <FlatList
         data={DATA}
-        renderItem={({item}) => (
-          <OrderCard
-            title={item.title}
-            status={item.status}
-            date={item.date}
-            carBrand={item.carBrand}
-          />
-        )}
+        renderItem={renderItem}
         keyExtractor={item => item.id}
         ListEmptyComponent={
           <View style={styles.emptyStateContainer}>
