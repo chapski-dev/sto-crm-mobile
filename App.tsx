@@ -5,13 +5,13 @@ import { NoConnection } from './src/screens/NoConnection';
 
 function App(): React.JSX.Element {
 
-  const [noInternetConnectionState, setNoInternetConnectionState] = useState(true)
+  const [noInternetConnection, setNoInternetConnection] = useState(true)
 
   return (
     <NavigationContainer>
 
       {
-        noInternetConnectionState ?
+        noInternetConnection ?
         <NoConnection /> :
         <Navigator />
       }
