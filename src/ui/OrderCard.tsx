@@ -1,20 +1,20 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Order} from '../screens/OrdersScreen';
+import {Order, OrderStatus} from '../screens/OrdersScreen';
 
 export const OrderCard: React.FC<Order> = ({
-  OrderNumber,
+  order_number,
   status,
   date,
   carBrand,
 }) => {
   const getStatusStyle = () => {
     switch (status) {
-      case 'В работе':
+      case OrderStatus.InProgress:
         return styles.statusInProgress;
-      case 'Отказ клиента':
+      case OrderStatus.ClientRefused:
         return styles.statusClientRefused;
-      case 'Выполнен':
+      case OrderStatus.Completed:
         return styles.statusCompleted;
       default:
         return {};
@@ -25,7 +25,7 @@ export const OrderCard: React.FC<Order> = ({
     <View style={styles.container}>
       <View style={styles.orderCardHeader}>
         <View>
-          <Text style={styles.title}>{OrderNumber}</Text>
+          <Text style={styles.title}>{order_number}</Text>
           <Text>{date}</Text>
         </View>
         <View style={[styles.wrapperStatus, getStatusStyle()]}>
@@ -80,9 +80,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9F7E5',
     color: '#42B121',
   },
-  carBrand: {
+  carBrand: { 
     fontSize: 15,
     lineHeight: 22,
     color: '#0084EB',
   },
 });
+

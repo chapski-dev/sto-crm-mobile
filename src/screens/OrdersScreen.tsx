@@ -4,7 +4,7 @@ import ReportSearchIcon from '../../assets/icons/report-search.svg';
 import {OrderCard} from '../ui/OrderCard';
 import {Title} from '../ui/Text';
 
-enum OrderStatus {
+export enum OrderStatus {
   InProgress = 'В работе',
   ClientRefused = 'Отказ клиента',
   Completed = 'Выполнен',
@@ -12,7 +12,7 @@ enum OrderStatus {
 
 export interface Order {
   id: string;
-  OrderNumber: string;
+  order_number: string;
   status: OrderStatus;
   date: string;
   carBrand: string;
@@ -21,21 +21,21 @@ export interface Order {
 const DATA: Order[] = [
   {
     id: '1',
-    OrderNumber: '№231128162535',
+    order_number: '№231128162535',
     status: OrderStatus.InProgress,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
   },
   {
     id: '2',
-    OrderNumber: '№231128162535',
+    order_number: '№231128162535',
     status: OrderStatus.ClientRefused,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
   },
   {
     id: '3',
-    OrderNumber: '№231128162535',
+    order_number: '№231128162535',
     status: OrderStatus.Completed,
     date: '24 дек. 2023',
     carBrand: 'Honda Jazz III Рестайлинг, Хэтчбек 5 дв. 8682 AX-3',
@@ -46,11 +46,10 @@ export const OrdersScreen: React.FC = () => {
   const renderItem = useCallback(
     ({item}: {item: Order}) => (
       <OrderCard
-        OrderNumber={item.OrderNumber}
+        order_number={item.order_number}
         status={item.status}
         date={item.date}
         carBrand={item.carBrand}
-        id={''}
       />
     ),
     [],
