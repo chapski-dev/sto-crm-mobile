@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import { ActivityIndicator, StyleSheet, TextInput, Touchable, TouchableOpacity, View, Keyboard } from 'react-native'
+import React, {useState} from 'react';
+import { StyleSheet, View, Keyboard } from 'react-native'
 import {Input} from '../ui/Input';
 import {Title} from '../ui/Text';
 import {Button} from '../ui/Button';
@@ -10,22 +10,6 @@ import {RootStackParamList} from '../navigation/types';
 type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Auth = () => {
-  const [keyboardStatus, setKeyboardStatus] = useState('Keyboard Hidden');
-
-  useEffect(() => {
-    const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-      setKeyboardStatus('Keyboard Shown');
-    })
-    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-      setKeyboardStatus('Keyboard Hidden');
-    })
-
-    return () => {
-      showSubscription.remove();
-      hideSubscription.remove();
-    }
-  }, [])
-
   const [inputValue, setInputValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
@@ -39,9 +23,9 @@ export const Auth = () => {
   };
 
   return (
-    <View style={keyboardStatus === 'Keyboard Shown' ? [styles.main, styles.mainKeyboardShown] : styles.main}>
+    <View style={styles.main}>
 
-      <View>
+      <View style={styles.wrapper}>
 
         <Title props="Авторизация" />
 
@@ -86,15 +70,15 @@ export const Auth = () => {
 
 const styles = StyleSheet.create({
   main: {
-    height: "93%",
+    height: "88%",
     marginTop: 50,
     marginLeft: 16,
     marginRight: 16,
-    gap: 24,
-    flexDirection: "column",
     justifyContent: "space-between",
+    flexDirection: "column",
   },
-  mainKeyboardShown : {
-    height: "70%",
+  wrapper: {
+    marginTop: 25,
+    gap: 25,
   },
 });
