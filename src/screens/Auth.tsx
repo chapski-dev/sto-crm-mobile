@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Keyboard } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import {Input} from '../ui/Input';
-import {Title} from '../ui/Text';
-import {Button} from '../ui/Button';
+import {Text} from '../ui/Text';
+import { Button } from '../ui/Button'
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
@@ -27,11 +27,10 @@ export const Auth = () => {
 
       <View style={styles.wrapper}>
 
-        <Title props="Авторизация" />
+        <Text children="Авторизация" type='body' fontWeight={700} fontSize={32} color='#203040' />
 
         <View>
           <Input
-            onSubmitEditing={Keyboard.dismiss}
             label="УНП организации"
             placeholder="000 000 000 000"
             value={inputValue}
@@ -43,7 +42,6 @@ export const Auth = () => {
 
         <View>
           <Input
-            onSubmitEditing={Keyboard.dismiss}
             label="Телефон"
             prompting="Введите номер без знака плюс (+)"
             placeholder="375 00 00 00 00"
