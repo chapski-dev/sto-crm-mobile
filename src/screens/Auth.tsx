@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native'
 import {Input} from '../ui/Input';
 import {Text} from '../ui/Text';
 import { Button } from '../ui/Button'
@@ -23,9 +23,9 @@ export const Auth = () => {
   };
 
   return (
-    <View style={styles.main}>
+    <KeyboardAvoidingView style={styles.main} >
 
-      <View style={styles.wrapper}>
+      <View style={styles.inputsWrapper}>
 
         <Text children="Авторизация" type='body' fontWeight={700} fontSize={32} color='#203040' />
 
@@ -54,7 +54,7 @@ export const Auth = () => {
 
       </View>
 
-      <View>
+      <View style={styles.button}>
         <Button
           disabled={disabledButton}
           loading={loading}
@@ -62,21 +62,26 @@ export const Auth = () => {
           onPress={handleSubmit}
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   main: {
-    height: "88%",
     marginTop: 50,
     marginLeft: 16,
     marginRight: 16,
+    flexGrow: 1,
     justifyContent: "space-between",
     flexDirection: "column",
+
   },
-  wrapper: {
-    marginTop: 25,
+  inputsWrapper: {
+    paddingTop: 25,
     gap: 25,
+    flexGrow: 1,
   },
+  button: {
+    paddingBottom: 25
+  }
 });
