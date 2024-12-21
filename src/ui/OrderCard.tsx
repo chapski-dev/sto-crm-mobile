@@ -80,10 +80,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9F7E5',
     color: '#42B121',
   },
-  carBrand: { 
+  carBrand: {
     fontSize: 15,
     lineHeight: 22,
     color: '#0084EB',
   },
 });
-

@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import ReportSearchIcon from '../../assets/icons/report-search.svg';
 import {OrderCard} from '../ui/OrderCard';
-import {Title} from '../ui/Text';
+import {Text} from '../ui/Text';
 
 export enum OrderStatus {
   InProgress = 'В работе',
@@ -58,7 +58,13 @@ export const OrdersScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapperTitle}>
-        <Title title="Список заказов" />
+        <Text
+          children="Список заказов"
+          type="body"
+          fontWeight={700}
+          fontSize={32}
+          color="#203040"
+        />
       </View>
       <FlatList
         data={DATA}
