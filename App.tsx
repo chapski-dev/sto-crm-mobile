@@ -1,23 +1,15 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {Navigator} from './src/navigation/Navigator';
-import React, { useState } from "react";
-import { NoConnection } from './src/screens/NoConnection';
+import React, {useState} from 'react';
+import {NoConnection} from './src/screens/NoConnection';
 
 function App(): React.JSX.Element {
-
-  const [noInternetConnection, setNoInternetConnection] = useState(true)
+  const [noInternetConnection, setNoInternetConnection] = useState(false);
 
   return (
     <NavigationContainer>
-
-      {
-        noInternetConnection ?
-        <NoConnection /> :
-        <Navigator />
-      }
-
+      {noInternetConnection ? <NoConnection /> : <Navigator />}
     </NavigationContainer>
-
   );
 }
 

@@ -1,8 +1,15 @@
 import React, {useState} from 'react';
-import { ActivityIndicator, StyleSheet, TextInput, Touchable, TouchableOpacity, View } from 'react-native'
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TextInput,
+  Touchable,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Input} from '../ui/Input';
 import {Text} from '../ui/Text';
-import { Button } from '../ui/Button'
+import {Button} from '../ui/Button';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
@@ -24,9 +31,13 @@ export const Auth = () => {
 
   return (
     <View style={styles.main}>
-
-      <Text children="Авторизация" type='body' fontWeight={700} fontSize={32} color='#203040' />
-
+      <Text
+        children="Авторизация"
+        type="body"
+        fontWeight={700}
+        fontSize={32}
+        color="#203040"
+      />
       <View>
         <Input
           label="УНП организации"
