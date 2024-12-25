@@ -12,10 +12,10 @@ import {
 } from 'react-native';
 
 interface PropsType extends ViewProps {
-  disabled: boolean;
-  loading: boolean;
+  disabled?: boolean;
+  loading?: boolean;
   title: string;
-  onPress: () => void;
+  onPress?: () => void;
   wrapperStyle?: StyleProp<ViewStyle>;
   buttonStyle?: StyleProp<ViewStyle>;
   buttonDisabledStyle?: StyleProp<ViewStyle>;

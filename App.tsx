@@ -3,6 +3,7 @@ import {Navigator} from './src/navigation/Navigator';
 import React, { useState } from "react";
 import { NoConnection } from './src/screens/NoConnection';
 import { ProfileScreen } from './src/screens/ProfileScreen';
+import Toast from 'react-native-toast-message';
 
 function App(): React.JSX.Element {
 
@@ -16,6 +17,7 @@ function App(): React.JSX.Element {
         <NoConnection /> :
         <Navigator />
       }
+      <Toast />
 
     </NavigationContainer>
 
