@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import {Input} from '../ui/Input';
 import {Text} from '../ui/Text';
 import { Button } from '../ui/Button'
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -23,7 +24,8 @@ export const Auth = () => {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.main} >
+
+    <KeyboardAwareScrollView style={styles.main} contentContainerStyle={{ flex: 1 }}>
 
       <View style={styles.inputsWrapper}>
 
@@ -62,7 +64,8 @@ export const Auth = () => {
           onPress={handleSubmit}
         />
       </View>
-    </KeyboardAvoidingView>
+      
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -72,9 +75,8 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     marginRight: 16,
     flexGrow: 1,
-    justifyContent: "space-between",
     flexDirection: "column",
-
+    height: '100%',
   },
   inputsWrapper: {
     paddingTop: 25,
