@@ -11,7 +11,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const Auth = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [UNPValue, setUNPValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
   const [loading, setLoading] = useState(false);
@@ -34,9 +34,9 @@ export const Auth = () => {
           <Input
             label="УНП организации"
             placeholder="000 000 000 000"
-            value={inputValue}
-            onChangeText={setInputValue}
-            error={inputValue.length > 0 && inputValue.length < 12}
+            value={UNPValue}
+            onChangeText={setUNPValue}
+            error={UNPValue.length > 0 && UNPValue.length < 12}
             errorText="Error"
           />
         </View>
@@ -56,7 +56,7 @@ export const Auth = () => {
       </View>
 
       <Button
-        disabled={inputValue.length === 12 && phoneValue.length === 12 ||  loading}
+        disabled={UNPValue.length === 12 && phoneValue.length === 12 ||  loading}
         loading={loading}
         title={'Войти'}
         onPress={handleSubmit}
