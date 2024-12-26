@@ -1,27 +1,45 @@
-import React, { FC, useMemo } from 'react';
-import {StyleSheet, Text as RNText, TextProps as RNTextProps, TextStyle} from 'react-native';
+import React, {FC, useMemo} from 'react';
+import {
+  StyleSheet,
+  Text as RNText,
+  TextProps as RNTextProps,
+  TextStyle,
+} from 'react-native';
 
-type TextType = keyof typeof styles
+type TextType = keyof typeof styles;
 
-type TextProps = RNTextProps & {type?: TextType, color?: string, textAlign?: TextStyle['textAlign'], fontWeight?: TextStyle['fontWeight'], fontSize?: number }
-// TODO: add theme colors 
-const Text:FC<TextProps> = ({ type, style, color, textAlign, fontWeight, fontSize, ...rest }) => {
-
+type TextProps = RNTextProps & {
+  type?: TextType;
+  color?: string;
+  textAlign?: TextStyle['textAlign'];
+  fontWeight?: TextStyle['fontWeight'];
+  fontSize?: number;
+};
+// TODO: add theme colors
+const Text: FC<TextProps> = ({
+  type,
+  style,
+  color,
+  textAlign,
+  fontWeight,
+  fontSize,
+  ...rest
+}) => {
   const styleUseMemo = useMemo(() => {
     return [
-      styles[type ? type : 'body'], 
+      styles[type ? type : 'body'],
       style,
       {
         color,
         textAlign,
         fontWeight,
-        fontSize
-      }
-    ]
-  }, [])
+        fontSize,
+      },
+    ];
+  }, []);
 
-  return <RNText { ...rest } style={styleUseMemo} />
-}
+  return <RNText {...rest} style={styleUseMemo} />;
+};
 
 const styles = StyleSheet.create({
   title: {
@@ -34,9 +52,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     color: '#798391',
   },
-  body : {
-    
-  },
+  body: {},
 });
 
-export { Text };
+export {Text};
