@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native'
 import { Text } from '../ui/Text';
 import { Button } from '../ui/Button';
@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
 import Toast from 'react-native-toast-message';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export const ChangePhoneScreen  = () => {
 	type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -33,11 +34,11 @@ export const ChangePhoneScreen  = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	return (
-			<View style={styles.wrapper}>
+			<KeyboardAwareScrollView style={styles.wrapper} contentContainerStyle={{ justifyContent: 'space-between', flex: 1 }} >
 
-				<View style={styles.body}>
+				<View>
 					<Text children={'Изменить телефон'} type='body' fontWeight={700} fontSize={36} color='black' />
-					<View style={styles.info}>
+					<View>
 						<Text children={'Телефон'} fontSize={15} fontWeight={400} color='#798391' />
 						<Input placeholder='375 00 000 00 00' value={inputValue} onChangeText={setInputValue} error={false} errorText={'Неправильно введен номер телефона'} />
 						<Text children={'Введите номер без знака плюс (+)'} fontSize={15} fontWeight={400} color='#798391' />
@@ -46,7 +47,7 @@ export const ChangePhoneScreen  = () => {
 
 				<Button title='Сохранить' disabled={inputValue.length === 12 ? false : true} loading={isLoading} onPress={handleSubmit} buttonStyle={{backgroundColor: '#0090FF'}} textStyle={{color: 'white', fontWeight: 600, fontSize: 17}} />
 
-			</View>
+			</KeyboardAwareScrollView>
 		)
 }
 
@@ -56,12 +57,5 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		paddingHorizontal: 15,
 		flexGrow: 1,
-		justifyContent: 'space-between',
-	},
-	body: {
-
-	},
-	info: {
-
 	},
 })
