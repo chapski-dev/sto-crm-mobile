@@ -14,7 +14,6 @@ export const Auth = () => {
   const [inputValue, setInputValue] = useState('');
   const [phoneValue, setPhoneValue] = useState('');
 
-  const [disabledButton, setDisabledButton] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation<AuthScreenNavigationProp>();
@@ -57,7 +56,7 @@ export const Auth = () => {
       </View>
 
       <Button
-        disabled={disabledButton}
+        disabled={inputValue.length === 12 && phoneValue.length === 12 ||  loading}
         loading={loading}
         title={'Войти'}
         onPress={handleSubmit}
