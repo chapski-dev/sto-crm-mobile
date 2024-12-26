@@ -11,6 +11,8 @@ import {
   ViewStyle,
 } from 'react-native';
 
+type TextType = keyof typeof styles
+
 interface PropsType extends ViewProps {
   disabled?: boolean;
   loading?: boolean;
@@ -20,6 +22,7 @@ interface PropsType extends ViewProps {
   buttonStyle?: StyleProp<ViewStyle>;
   buttonDisabledStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
+  type?: TextType
 }
 
 export const Button: FC<PropsType> = ({
@@ -31,19 +34,20 @@ export const Button: FC<PropsType> = ({
   buttonStyle,
   buttonDisabledStyle,
   textStyle,
+  type,
 }) => {
   return (
     <View style={[styles.wrapper, wrapperStyle]}>
       <TouchableOpacity
         style={
           disabled
-            ? [
-                styles.button,
-                styles.buttonDisabled,
-                buttonStyle,
-                buttonDisabledStyle,
-              ]
-            : [styles.button, buttonStyle]
+          ? [
+              styles.button,
+              styles.buttonDisabled,
+              buttonStyle,
+              buttonDisabledStyle,
+            ]
+          : type ? [styles.button, styles[type], buttonStyle] : [styles.button, buttonStyle]
         }
         disabled={disabled}
         onPress={onPress}>
@@ -72,6 +76,9 @@ const styles = StyleSheet.create({
   },
   buttonDisabled: {
     opacity: 0.5,
+  },
+  clearButton: {
+    backgroundColor: 'none'
   },
   text: {
     color: 'white',

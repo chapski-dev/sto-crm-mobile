@@ -13,8 +13,11 @@ export const ChangePhoneScreen  = () => {
 	type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 	const navigation = useNavigation<AuthScreenNavigationProp>();
 
+	const [phone, setPhone] = useState('')
+	const [loading, setLoading] = useState(false)
+
 	const handleSubmit = () => {
-		if (inputValue) {
+		if (phone) {
 			navigation.push('Tabs');
 			Toast.show({
 				type: 'success',
@@ -30,22 +33,18 @@ export const ChangePhoneScreen  = () => {
 		}
 	}
 
-	const [inputValue, setInputValue] = useState('')
-	const [isLoading, setIsLoading] = useState(false)
-
 	return (
 			<KeyboardAwareScrollView style={styles.wrapper} contentContainerStyle={{ justifyContent: 'space-between', flex: 1 }} >
 
 				<View>
 					<Text children={'Изменить телефон'} type='body' fontWeight={700} fontSize={36} color='black' />
 					<View>
-						<Text children={'Телефон'} fontSize={15} fontWeight={400} color='#798391' />
-						<Input placeholder='375 00 000 00 00' value={inputValue} onChangeText={setInputValue} error={false} errorText={'Неправильно введен номер телефона'} />
+						<Input label={'Телефон'} placeholder='375 00 000 00 00' value={phone} onChangeText={setPhone} error={false} errorText={'Неправильно введен номер телефона'} />
 						<Text children={'Введите номер без знака плюс (+)'} fontSize={15} fontWeight={400} color='#798391' />
 					</View>
 				</View>
 
-				<Button title='Сохранить' disabled={inputValue.length === 12 ? false : true} loading={isLoading} onPress={handleSubmit} buttonStyle={{backgroundColor: '#0090FF'}} textStyle={{color: 'white', fontWeight: 600, fontSize: 17}} />
+				<Button title='Сохранить' disabled={phone.length !== 12} loading={loading} onPress={handleSubmit} />
 
 			</KeyboardAwareScrollView>
 		)

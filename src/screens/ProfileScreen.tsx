@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Modal } from 'react-native';
 import { Text } from '../ui/Text';
 import { Button } from '../ui/Button';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
+import NoAvatar from '../../assets/icons/noAvatar.svg'
 
 export const ProfileScreen = () => {
   const [isAvatarExist, setIsAvatarExist] = useState<boolean>(true)
@@ -27,28 +28,34 @@ export const ProfileScreen = () => {
           <View style={styles.titleWrapper}>
             <Text children={'Профиль'} type='body' fontWeight={700} fontSize={36} color='black' />
           </View>
-          <Image style={styles.avatar} source={isAvatarExist ? require('../../assets/icons/valakas.png') : require('../../assets/icons/noAvatar.png')} />
+          {
+            isAvatarExist 
+            ?
+            <Image style={styles.avatar} source={require('../../assets/icons/valakas.png')} />
+            :
+            <NoAvatar style={styles.avatar} />
+          }
           <View style={styles.info}>
             <Text children={'+375 44 566 04 44'} fontSize={21} fontWeight={600} color='black' />
             <Text children={'УНП организации 796 213 310 130'} fontSize={17} fontWeight={400} color='#798391' />
           </View>
-          <Button title='Изменить телефон' onPress={changePhoneHandler} buttonStyle={{backgroundColor: 'none'}} textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
+          <Button title='Изменить телефон' onPress={changePhoneHandler} type='clearButton' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
         </View>
-        <Button title='Выйти из аккаунта' onPress={() => {setIsPopUpShown(true)}} buttonStyle={{backgroundColor: 'none'}} textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 17}} />
+        <Button title='Выйти из аккаунта' onPress={() => {setIsPopUpShown(true)}} type='clearButton' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 17}} />
       </View>
 
-    {isPopUpShown ? 
-    <View style={styles.popupWrapper}>
-      <View style={styles.popup}>
-        <Text children={'Выйти из аккаунта'} fontWeight={600} fontSize={17} color='black' />
-        <Text children={'Вы действительно хотите выйти из аккаунта?'} type='body' fontWeight={400} fontSize={14} color='black' textAlign='center' />
-        <View style={styles.popupButtonsWrapper}>
-          <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} buttonStyle={{backgroundColor: 'none'}} textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
-          <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} buttonStyle={{backgroundColor: 'none'}} textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />
-        </View>
-      </View> 
-    </View>
-    : ''}
+    <Modal visible={isPopUpShown} >
+      <View style={styles.popupWrapper}>
+        <View style={styles.popup}>
+          <Text children={'Выйти из аккаунта'} fontWeight={600} fontSize={17} color='black' />
+          <Text children={'Вы действительно хотите выйти из аккаунта?'} type='body' fontWeight={400} fontSize={14} color='black' textAlign='center' />
+          <View style={styles.popupButtonsWrapper}>
+            <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clearButton' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
+            <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clearButton' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />
+          </View>
+        </View> 
+      </View>
+    </Modal>
 
     </View>
   )
@@ -81,8 +88,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   avatar: {
-    height: 150,
-    width: 150,
+    height: 96,
+    width: 96,
     borderRadius: 150,
   },
   popupWrapper: {
