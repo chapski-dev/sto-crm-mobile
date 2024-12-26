@@ -56,14 +56,12 @@ export const Auth = () => {
 
       </View>
 
-      <View style={styles.button}>
-        <Button
-          disabled={disabledButton}
-          loading={loading}
-          title={'Войти'}
-          onPress={handleSubmit}
-        />
-      </View>
+      <Button
+        disabled={disabledButton}
+        loading={loading}
+        title={'Войти'}
+        onPress={handleSubmit}
+      />
       
     </KeyboardAwareScrollView>
   );
@@ -72,8 +70,8 @@ export const Auth = () => {
 const styles = StyleSheet.create({
   main: {
     marginTop: 50,
-    marginLeft: 16,
-    marginRight: 16,
+    marginHorizontal: 16,
+    marginBottom: 15,
     flexGrow: 1,
     flexDirection: "column",
     height: '100%',
@@ -83,7 +81,4 @@ const styles = StyleSheet.create({
     gap: 25,
     flexGrow: 1,
   },
-  button: {
-    paddingBottom: 25
-  }
 });
