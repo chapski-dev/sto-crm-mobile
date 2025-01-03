@@ -37,10 +37,9 @@ export const ChangePhoneScreen  = () => {
 			<KeyboardAwareScrollView style={styles.wrapper} contentContainerStyle={{ justifyContent: 'space-between', flex: 1 }} >
 
 				<View>
-					<Text children={'Изменить телефон'} type='body' fontWeight={700} fontSize={36} color='black' />
+					<Text style={styles.title} children={'Изменить телефон'} type='body' fontWeight={700} fontSize={36} color='black' />
 					<View>
-						<Input label={'Телефон'} placeholder='375 00 000 00 00' value={phone} onChangeText={setPhone} error={false} errorText={'Неправильно введен номер телефона'} />
-						<Text children={'Введите номер без знака плюс (+)'} fontSize={15} fontWeight={400} color='#798391' />
+						<Input label={'Телефон'} prompting={'Введите номер без знака плюс (+)'} placeholder='375 00 000 00 00' value={phone} onChangeText={setPhone} error={false} errorText={'Неправильно введен номер телефона'} />
 					</View>
 				</View>
 
@@ -56,5 +55,8 @@ const styles = StyleSheet.create({
 		paddingBottom: 20,
 		paddingHorizontal: 15,
 		flexGrow: 1,
+	},
+	title: {
+		paddingBottom: 25,
 	},
 })
