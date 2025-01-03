@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 import {
   ActivityIndicator,
   StyleProp,
@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 
 interface PropsType extends ViewProps {
-  disabled: boolean;
-  loading: boolean;
+  disabled?: boolean;
+  loading?: boolean;
   title: string;
   onPress: () => void;
   wrapperStyle?: StyleProp<ViewStyle>;
@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 15,
   },
 });

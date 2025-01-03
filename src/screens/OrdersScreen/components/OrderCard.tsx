@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Order, OrderStatus} from '../screens/OrdersScreen';
+import {Order, OrderStatus} from '../OrdersScreen';
 
 export const OrderCard: React.FC<Order> = ({
   order_number,
