@@ -1,6 +1,15 @@
 {
   "compilerOptions": {
-    "jsx": "react"
+    "jsx": "react",
+    "types": ["react-native"],
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@assets/*": ["assets/*"]
+    },
   },
   "extends": "@react-native/typescript-config/tsconfig.json"
 }
