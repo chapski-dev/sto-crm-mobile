@@ -9,8 +9,9 @@ import {RootStackParamList} from '../navigation/types';
 import Toast from 'react-native-toast-message';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
+type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export const ChangePhoneScreen  = () => {
-	type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 	const navigation = useNavigation<AuthScreenNavigationProp>();
 
 	const [phone, setPhone] = useState('')

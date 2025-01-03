@@ -26,7 +26,7 @@ export const ProfileScreen = () => {
       <View style={styles.main}>
         <View style={styles.body}>
           <View style={styles.titleWrapper}>
-            <Text children={'Профиль'} type='body' fontWeight={700} fontSize={36} color='black' />
+            <Text children={'Профиль'} type='title' fontWeight={700} fontSize={36} />
           </View>
           {
             isAvatarExist 
@@ -36,8 +36,8 @@ export const ProfileScreen = () => {
             <NoAvatarIcon style={styles.avatar} />
           }
           <View style={styles.info}>
-            <Text children={'+375 44 566 04 44'} fontSize={21} fontWeight={600} color='black' />
-            <Text children={'УНП организации 796 213 310 130'} fontSize={17} fontWeight={400} color='#798391' />
+            <Text children={'+375 44 566 04 44'} type='title' fontSize={21} fontWeight={600} />
+            <Text children={'УНП организации 796 213 310 130'} type='title' fontSize={17} fontWeight={400} color='#798391' />
           </View>
           <Button title='Изменить телефон' onPress={goToChangePhone} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
         </View>
@@ -47,8 +47,8 @@ export const ProfileScreen = () => {
     <Modal visible={isPopUpShown} >
       <View style={styles.popupWrapper}>
         <View style={styles.popup}>
-          <Text children={'Выйти из аккаунта'} fontWeight={600} fontSize={17} color='black' />
-          <Text children={'Вы действительно хотите выйти из аккаунта?'} type={'body'} fontWeight={400} fontSize={14} color='black' textAlign='center' />
+          <Text children={'Выйти из аккаунта'} type='title' fontWeight={600} fontSize={17} />
+          <Text children={'Вы действительно хотите выйти из аккаунта?'} type='title' fontWeight={400} fontSize={14} textAlign='center' />
           <View style={styles.popupButtonsWrapper}>
             <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
             <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />
