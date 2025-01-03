@@ -5,20 +5,20 @@ import { Button } from '../ui/Button';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
-import NoAvatar from '../../assets/icons/noAvatar.svg'
+import NoAvatarIcon from '../../assets/icons/noAvatar.svg'
+
+type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 export const ProfileScreen = () => {
-  const [isAvatarExist, setIsAvatarExist] = useState<boolean>(true)
-
-  type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+  const isAvatarExist = true
 
 	const navigation = useNavigation<AuthScreenNavigationProp>();
 
-	const changePhoneHandler = () => {
+	const goToChangePhone  = () => {
 		navigation.push('ChangePhoneScreen');
 	}
 
-  const [isPopUpShown, setIsPopUpShown] = useState<boolean>(false)
+  const [isPopUpShown, setIsPopUpShown] = useState(false)
 
   return (
     <View style={styles.wrapper}>
@@ -31,27 +31,27 @@ export const ProfileScreen = () => {
           {
             isAvatarExist 
             ?
-            <Image style={styles.avatar} source={require('../../assets/icons/valakas.png')} />
+            <Image style={styles.avatar} source={require('../../assets/pictures/valakas.png')} />
             :
-            <NoAvatar style={styles.avatar} />
+            <NoAvatarIcon style={styles.avatar} />
           }
           <View style={styles.info}>
             <Text children={'+375 44 566 04 44'} fontSize={21} fontWeight={600} color='black' />
             <Text children={'УНП организации 796 213 310 130'} fontSize={17} fontWeight={400} color='#798391' />
           </View>
-          <Button title='Изменить телефон' onPress={changePhoneHandler} type='clearButton' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
+          <Button title='Изменить телефон' onPress={goToChangePhone} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
         </View>
-        <Button title='Выйти из аккаунта' onPress={() => {setIsPopUpShown(true)}} type='clearButton' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 17}} />
+        <Button title='Выйти из аккаунта' onPress={() => {setIsPopUpShown(true)}} type='clear' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 17}} />
       </View>
 
     <Modal visible={isPopUpShown} >
       <View style={styles.popupWrapper}>
         <View style={styles.popup}>
           <Text children={'Выйти из аккаунта'} fontWeight={600} fontSize={17} color='black' />
-          <Text children={'Вы действительно хотите выйти из аккаунта?'} type='body' fontWeight={400} fontSize={14} color='black' textAlign='center' />
+          <Text children={'Вы действительно хотите выйти из аккаунта?'} type={'body'} fontWeight={400} fontSize={14} color='black' textAlign='center' />
           <View style={styles.popupButtonsWrapper}>
-            <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clearButton' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
-            <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clearButton' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />
+            <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
+            <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />
           </View>
         </View> 
       </View>

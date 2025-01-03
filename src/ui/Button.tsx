@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   buttonDisabled: {
     opacity: 0.5,
   },
-  clearButton: {
+  clear: {
     backgroundColor: 'none'
   },
   text: {
