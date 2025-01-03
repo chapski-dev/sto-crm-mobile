@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Input} from '../ui/Input';
-import {Text} from '../ui/Text';
-import {Button} from '../ui/Button';
+import {Button, Text, Input} from '@src/ui';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';

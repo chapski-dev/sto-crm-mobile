@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import ReportSearchIcon from '../../../assets/icons/report-search.svg';
+import ReportSearchIcon from '../../../assets/svg/report-search.svg';
 import {OrderCard} from './components/OrderCard';
 import {Text} from '../../ui/Text';
 

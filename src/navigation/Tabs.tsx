@@ -1,9 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {OrdersScreen} from '../screens/OrdersScreen';
-import {ProfileScreen} from '../screens/ProfileScreen';
-import OrderIcon from '../../assets/icons/OrderIcon';
-import ProfileIcon from '../../assets/icons/ProfileIcon';
+import {OrdersScreen} from '@src/screens/OrdersScreen';
+import {ProfileScreen} from '@src/screens/ProfileScreen';
+import CarIcon from '@assets/svg/car.svg';
+import ProfileIcon from '@assets/svg/profile.svg';
 import {TabsParamList} from './types';
 
 const Tab = createBottomTabNavigator<TabsParamList>();
@@ -15,7 +15,7 @@ export const Tabs = () => {
         name="OrdersScreen"
         component={OrdersScreen}
         options={{
-          tabBarIcon: ({color}) => <OrderIcon color={color} />,
+          tabBarIcon: ({color}) => <CarIcon color={color} />,
           title: 'Список заказов',
         }}
       />

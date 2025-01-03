@@ -7,7 +7,7 @@ import {
   Text,
   TextInputProps,
 } from 'react-native';
-import CrossIcon from '../../assets/icons/CrossIcon.svg';
+import CrossIcon from '@assets/svg/round-cross.svg';
 
 interface InputProps extends TextInputProps {
   label?: string;

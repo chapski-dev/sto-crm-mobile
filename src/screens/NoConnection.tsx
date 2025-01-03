@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button} from '../ui/Button';
-import {Text} from '../ui/Text';
-import NoConnectionIcon from '../../assets/icons/no-connection.svg';
+import {Button} from '@src/ui/Button';
+import {Text} from '@src/ui/Text';
+import NoConnectionIcon from '@assets/svg/no-connection.svg';
 
 export const NoConnection = () => {
   const onAuthButtonPressHandler = () => {
@@ -15,7 +15,7 @@ export const NoConnection = () => {
         <NoConnectionIcon />
         <View style={{gap: 8}}>
           <Text
-            children={'Нет соединения с интернетом!'}
+            children="Нет соединения с интернетом!"
             type="body"
             fontSize={17}
             fontWeight={500}
@@ -43,7 +43,7 @@ export const NoConnection = () => {
         </View>
       </View>
 
-      <Button title={'Обновить'} onPress={onAuthButtonPressHandler} />
+      <Button title="Обновить" onPress={onAuthButtonPressHandler} />
     </View>
   );
 };
