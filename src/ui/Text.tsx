@@ -37,7 +37,8 @@ const Text: FC<TextProps> = ({
       },
     ];
   }, []);
-
+  console.log(styleUseMemo);
+  
   return <RNText {...rest} style={styleUseMemo} />;
 };
 
