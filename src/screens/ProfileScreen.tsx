@@ -5,7 +5,7 @@ import { Button } from '../ui/Button';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
-import NoAvatarIcon from '../../assets/icons/noAvatar.svg'
+import NoAvatarIcon from '../../assets/icons/no-avatar.svg'
 
 type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -26,7 +26,7 @@ export const ProfileScreen = () => {
       <View style={styles.main}>
         <View style={styles.body}>
           <View style={styles.titleWrapper}>
-            <Text children={'Профиль'} type='title' fontWeight={700} fontSize={36} />
+            <Text children={'Профиль'} color={'black'} fontWeight={700} fontSize={36} />
           </View>
           {
             isAvatarExist 
@@ -36,8 +36,8 @@ export const ProfileScreen = () => {
             <NoAvatarIcon style={styles.avatar} />
           }
           <View style={styles.info}>
-            <Text children={'+375 44 566 04 44'} type='title' fontSize={21} fontWeight={600} />
-            <Text children={'УНП организации 796 213 310 130'} type='title' fontSize={17} fontWeight={400} color='#798391' />
+            <Text children={'+375 44 566 04 44'} color={'black'} fontSize={21} fontWeight={600} />
+            <Text children={'УНП организации 796 213 310 130'} fontSize={17} fontWeight={400} color='#798391' />
           </View>
           <Button title='Изменить телефон' onPress={goToChangePhone} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 17}} />
         </View>
@@ -47,8 +47,8 @@ export const ProfileScreen = () => {
     <Modal visible={isPopUpShown} >
       <View style={styles.popupWrapper}>
         <View style={styles.popup}>
-          <Text children={'Выйти из аккаунта'} type='title' fontWeight={600} fontSize={17} />
-          <Text children={'Вы действительно хотите выйти из аккаунта?'} type='title' fontWeight={400} fontSize={14} textAlign='center' />
+          <Text children={'Выйти из аккаунта'} color={'black'} fontWeight={600} fontSize={17} />
+          <Text children={'Вы действительно хотите выйти из аккаунта?'} fontWeight={400} fontSize={14} textAlign='center' />
           <View style={styles.popupButtonsWrapper}>
             <Button title='Отмена' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#0084EB', fontWeight: 400, fontSize: 14}} />
             <Button title='Выйти' onPress={() => {setIsPopUpShown(false)}} wrapperStyle={{width: '50%'}} type='clear' textStyle={{color: '#EB4221', fontWeight: 400, fontSize: 14}} />

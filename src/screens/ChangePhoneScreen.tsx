@@ -38,11 +38,11 @@ export const ChangePhoneScreen  = () => {
 			<KeyboardAwareScrollView style={styles.wrapper} contentContainerStyle={{ justifyContent: 'space-between', flex: 1 }} >
 
 				<View>
-					<Text children={'Изменить телефон'} type='title' />
-					<Input label={'Телефон'} prompting={'Введите номер без знака плюс (+)'} placeholder='375 00 000 00 00' value={phone} onChangeText={setPhone} error={false} errorText={'Неправильно введен номер телефона'} />
+					<Text children={'Изменить телефон'} color={'black'} type='title' />
+					<Input label={'Телефон'} prompting={'Введите номер без знака плюс (+)'} placeholder='375 00 000 00 00' value={phone} onChangeText={setPhone} errorText={'Неправильно введен номер телефона'} />
 				</View>
 
-				<Button title='Сохранить' disabled={phone.length !== 12} loading={loading} onPress={handleSubmit} />
+				<Button title='Сохранить' disabled={phone.length !== 12 || loading} loading={loading} onPress={handleSubmit} />
 
 			</KeyboardAwareScrollView>
 		)

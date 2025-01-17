@@ -11,7 +11,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-type TextType = keyof typeof styles
+type ButtonType = keyof typeof styles
 
 interface PropsType extends ViewProps {
   disabled?: boolean;
@@ -22,7 +22,7 @@ interface PropsType extends ViewProps {
   buttonStyle?: StyleProp<ViewStyle>;
   buttonDisabledStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
-  type?: TextType
+  type?: ButtonType
 }
 
 export const Button: FC<PropsType> = ({
