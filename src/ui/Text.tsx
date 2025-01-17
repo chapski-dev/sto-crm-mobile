@@ -25,20 +25,26 @@ const Text: FC<TextProps> = ({
   fontSize,
   ...rest
 }) => {
-  const styleUseMemo = useMemo(() => {
-    return [
-      styles[type ? type : 'body'],
-      style,
-      {
-        color,
-        textAlign,
-        fontWeight,
-        fontSize,
-      },
-    ];
-  }, []);
+  const computedStyle = useMemo(() => {
+    const customStyles: TextStyle = {};
 
-  return <RNText {...rest} style={styleUseMemo} />;
+    if (color) {
+      customStyles.color = color;
+    }
+    if (textAlign) {
+      customStyles.textAlign = textAlign;
+    }
+    if (fontWeight) {
+      customStyles.fontWeight = fontWeight;
+    }
+    if (fontSize) {
+      customStyles.fontSize = fontSize;
+    }
+
+    return [styles[type ? type : 'body'], customStyles, style].flat();
+  }, [color, textAlign, fontWeight, fontSize, style, type]);
+
+  return <RNText {...rest} style={computedStyle} />;
 };
 
 const styles = StyleSheet.create({

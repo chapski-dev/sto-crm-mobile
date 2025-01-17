@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {forwardRef, useRef, useState} from 'react';
 import {
   View,
   TextInput,
@@ -7,7 +7,7 @@ import {
   Text,
   TextInputProps,
 } from 'react-native';
-import CrossIcon from '../../assets/icons/CrossIcon.svg';
+import CrossIcon from '@assets/svg/round-cross.svg';
 
 interface InputProps extends TextInputProps {
   label?: string;
@@ -18,52 +18,49 @@ interface InputProps extends TextInputProps {
   errorText: string;
 }
 
-export const Input: FC<InputProps> = ({
-  label,
-  prompting,
-  value,
-  onChangeText,
-  error,
-  errorText,
-  ...restProps
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
+export const Input = forwardRef<InputProps, InputProps>(
+  (
+    {label, prompting, value, onChangeText, error, errorText, ...props},
+    ref,
+  ) => {
+    const localRef: React.Ref<TextInput> &
+      React.Ref<React.PropsWithChildren<InputProps>> = useRef(null);
 
-  const handleClear = () => {
-    onChangeText('');
-  };
+    const [isFocused, setIsFocused] = useState(false);
 
-  return (
-    <View>
-      <Text style={styles.textWrapper}>{label}</Text>
-      <View
-        style={[
-          styles.inputWrapper,
-          isFocused && styles.inputFocused,
-          error && styles.inputError,
-        ]}>
-        <TextInput
-          value={value}
-          style={styles.input}
-          onChangeText={onChangeText}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          {...restProps}
-        />
-        {value.length > 0 && isFocused && (
-          <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
-            <CrossIcon />
-          </TouchableOpacity>
-        )}
+    const handleClear = () => onChangeText('');
+
+    return (
+      <View style={{gap: 8}}>
+        <Text style={styles.label} children={label} />
+        <View
+          style={[
+            styles.inputWrapper,
+            isFocused && styles.inputFocused,
+            error && styles.inputError,
+          ]}>
+          <TextInput
+            value={value}
+            style={styles.input}
+            onChangeText={onChangeText}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            //@ts-ignore
+            ref={ref || localRef}
+            {...props}
+          />
+          {value.length > 0 && isFocused && (
+            <TouchableOpacity onPress={handleClear}>
+              <CrossIcon />
+            </TouchableOpacity>
+          )}
+        </View>
+        {error && <Text style={styles.errorText} children={errorText} />}
+        <Text style={styles.label} children={prompting} />
       </View>
-      {error ? (
-        <Text style={styles.errorText}>{errorText}</Text>
-      ) : (
-        <Text style={styles.textWrapper}>{prompting}</Text>
-      )}
-    </View>
-  );
-};
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   inputWrapper: {
@@ -72,7 +69,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 12,
     borderColor: '#E8ECF0',
-    marginTop: 8,
     paddingRight: 10,
   },
   input: {
@@ -86,10 +82,7 @@ const styles = StyleSheet.create({
   inputError: {
     borderColor: 'red',
   },
-  clearButton: {
-    padding: 10,
-  },
-  textWrapper: {
+  label: {
     fontSize: 13,
     lineHeight: 16,
     color: '#798391',

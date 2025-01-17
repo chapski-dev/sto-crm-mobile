@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-import { StyleSheet,View } from 'react-native';
-import {Input} from '../ui/Input';
-import {Text} from '../ui/Text';
-import {Button} from '../ui/Button';
+import {StyleSheet, View} from 'react-native';
+import {Button, Text, Input} from '@src/ui';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../navigation/types';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 type AuthScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -19,16 +17,18 @@ export const Auth = () => {
   const navigation = useNavigation<AuthScreenNavigationProp>();
 
   const handleSubmit = () => {
+    setLoading(true);
     navigation.push('Tabs');
+    setLoading(false);
   };
 
   return (
-    <KeyboardAwareScrollView style={styles.main} contentContainerStyle={{ flex: 1 }}>
-
+    <KeyboardAwareScrollView
+      style={styles.main}
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{flexGrow: 1}}>
       <View style={styles.inputsWrapper}>
-
-        <Text children="Авторизация" type='body' fontWeight={700} fontSize={32} color='#203040' />
-
+        <Text children="Авторизация" type="title" />
         <View>
           <Input
             label="УНП организации"
@@ -37,6 +37,7 @@ export const Auth = () => {
             onChangeText={setUNPValue}
             error={UNPValue.length > 0 && UNPValue.length < 12}
             errorText="Error"
+            maxLength={12}
           />
         </View>
 
@@ -49,18 +50,17 @@ export const Auth = () => {
             onChangeText={setPhoneValue}
             error={phoneValue.length > 0 && phoneValue.length < 12}
             errorText="Error"
+            maxLength={12}
           />
         </View>
-
       </View>
 
       <Button
-        disabled={UNPValue.length === 12 && phoneValue.length === 12 ||  loading}
+        disabled={(!UNPValue && !phoneValue) || loading}
         loading={loading}
-        title={'Войти'}
+        title="Войти"
         onPress={handleSubmit}
       />
-      
     </KeyboardAwareScrollView>
   );
 };
@@ -71,8 +71,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginBottom: 15,
     flexGrow: 1,
-    flexDirection: "column",
-    height: '100%',
+    flexDirection: 'column',
   },
   inputsWrapper: {
     paddingTop: 25,

@@ -5,8 +5,7 @@ import { NoConnection } from './src/screens/NoConnection';
 import Toast from 'react-native-toast-message';
 
 function App(): React.JSX.Element {
-
-  const [noInternetConnection, setNoInternetConnection] = useState(false)
+  const [noInternetConnection] = useState(false);
 
   return (
     <NavigationContainer>
