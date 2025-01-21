@@ -14,7 +14,7 @@ interface InputProps extends TextInputProps {
   prompting?: string;
   value: string;
   onChangeText: (text: string) => void;
-  error: boolean;
+  error?: boolean;
   errorText: string;
 }
 
